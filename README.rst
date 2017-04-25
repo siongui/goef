@@ -40,10 +40,10 @@ References
 
 .. [1] | `GitHub - UnnoTed/fileb0x: simple customizable tool to embed files in go <https://github.com/UnnoTed/fileb0x>`_
        | `GitHub - jteeuwen/go-bindata: A small utility which generates Go code from any file. Useful for embedding binary data in a Go program. <https://github.com/jteeuwen/go-bindata>`_
-       | `GitHub - elazarl/go-bindata-assetfs: Serves embedded files from `jteeuwen/go-bindata` with `net/http` <https://github.com/elazarl/go-bindata-assetfs>`_
+       | `GitHub - elazarl/go-bindata-assetfs: Serves embedded files from \`jteeuwen/go-bindata\` with \`net/http\` <https://github.com/elazarl/go-bindata-assetfs>`_
        | `GitHub - GeertJohan/go.rice: go.rice is a Go package that makes working with resources such as html,js,css,images,templates, etc very easy. <https://github.com/GeertJohan/go.rice>`_
        | `GitHub - shurcooL/vfsgen: Takes an input http.FileSystem (likely at go generate time) and generates Go code that statically implements it. <https://github.com/shurcooL/vfsgen>`_
-       | `GitHub - tv42/becky: Go asset embedding for use with `go generate` <https://github.com/tv42/becky>`_
+       | `GitHub - tv42/becky: Go asset embedding for use with \`go generate\` <https://github.com/tv42/becky>`_
        | `GitHub - rakyll/statik: Embed static files into a Go executable <https://github.com/rakyll/statik>`_
        | `GitHub - mjibson/esc: A simple file embedder for Go <https://github.com/mjibson/esc>`_
        | `GitHub - bouk/staticfiles: staticfiles compiles a directory of files into an embeddable .go file <https://github.com/bouk/staticfiles>`_
