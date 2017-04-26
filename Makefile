@@ -5,8 +5,13 @@ export GOROOT=$(realpath ../go)
 export GOPATH=$(realpath .)
 export PATH := $(GOROOT)/bin:$(GOPATH)/bin:$(PATH)
 
+PKGDIR=${GOPATH}/src/github.com/siongui/myvfs
+
 test: fmt
-	@go test -v
+	rm -rf ${PKGDIR}
+	mkdir -p ${PKGDIR}
+	go test -v embed.go buildpkg.go buildpkg_test.go
+	go test -v import_test.go
 
 fmt:
 	@echo "\033[92mGo fmt source code...\033[0m"
