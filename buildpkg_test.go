@@ -1,9 +1,11 @@
 package goef
 
 import (
-	"os"
+	"flag"
 	"testing"
 )
+
+var pkgdir = flag.String("pkgdir", "", "dir of package containing embedded files")
 
 func TestGenerateGoPackage(t *testing.T) {
 	sl, err := FileToStringLiteral("testfile/hello.txt")
@@ -17,7 +19,7 @@ func TestGenerateGoPackage(t *testing.T) {
 		StringLiteralHex: sl,
 	}
 
-	err = GenerateGoPackage(&pkgdata, os.Getenv("PKGDIR"))
+	err = GenerateGoPackage(&pkgdata, *pkgdir)
 	if err != nil {
 		t.Error(err)
 		return
