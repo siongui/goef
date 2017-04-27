@@ -5,7 +5,7 @@ export GOROOT=$(realpath ../go)
 export GOPATH=$(realpath .)
 export PATH := $(GOROOT)/bin:$(GOPATH)/bin:$(PATH)
 
-PKGDIR=${GOPATH}/src/github.com/siongui/myvfs
+export PKGDIR=${GOPATH}/src/github.com/siongui/myvfs
 
 test: fmt
 	rm -rf ${PKGDIR}

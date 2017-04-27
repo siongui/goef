@@ -1,6 +1,7 @@
 package goef
 
 import (
+	"os"
 	"testing"
 )
 
@@ -16,7 +17,7 @@ func TestGenerateGoPackage(t *testing.T) {
 		StringLiteralHex: sl,
 	}
 
-	err = GenerateGoPackage(&pkgdata, "src/github.com/siongui/myvfs")
+	err = GenerateGoPackage(&pkgdata, os.Getenv("PKGDIR"))
 	if err != nil {
 		t.Error(err)
 		return
