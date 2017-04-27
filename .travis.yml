@@ -1,0 +1,6 @@
+language: go
+script:
+  - export PKGDIR=${GOPATH}/src/github.com/siongui/myvfs
+  - mkdir -p ${PKGDIR}
+  - go test -v embed.go buildpkg.go buildpkg_test.go
+  - go test -v import_test.go
