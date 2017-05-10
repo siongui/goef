@@ -37,5 +37,6 @@ func GenerateGoPackage(pkgdata *PkgData, pkgdir string) (err error) {
 		return
 	}
 
-	return tmpl.Execute(fo, pkgdata)
+	err = tmpl.Execute(fo, pkgdata)
+	return
 }
