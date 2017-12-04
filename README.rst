@@ -50,11 +50,13 @@ References
        | `GitHub - flazz/togo: convert any file to Go source <https://github.com/flazz/togo>`_
        | `GitHub - inconshreveable/go-update: Build self-updating Golang programs <https://github.com/inconshreveable/go-update>`_
        | `GitHub - aprice/embed: Static content embedding for Golang <https://github.com/aprice/embed>`_
+       | `GitHub - gobuffalo/packr: The simple and easy way to embed static files into Go binaries. <https://github.com/gobuffalo/packr>`_
 
 .. [2] | `Is including assets (with a tool like go-bindata) an anti-pattern? : golang <https://www.reddit.com/r/golang/comments/60166q/is_including_assets_with_a_tool_like_gobindata_an/>`_
        | `How to build Go plugin with data inside : golang <https://www.reddit.com/r/golang/comments/63f3ag/how_to_build_go_plugin_with_data_inside/>`_
        | `golang - compile static files in app? : golang <https://www.reddit.com/r/golang/comments/66uewv/golang_compile_static_files_in_app/>`_
        | `embed: Yet Another Static Content Embedder for Go : golang <https://www.reddit.com/r/golang/comments/6fh80b/embed_yet_another_static_content_embedder_for_go/>`_
+       | `Embed libraries into exe : golang <https://www.reddit.com/r/golang/comments/7h9kcx/embed_libraries_into_exe/>`_
 
 .. [3] `Embed Data in Front-end Go Code <https://siongui.github.io/2017/04/08/go-embed-data-in-frontend-code/>`_
 
