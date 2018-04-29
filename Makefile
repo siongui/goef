@@ -10,8 +10,9 @@ export PKGDIR=${GOPATH}/src/github.com/siongui/myvfs
 test: fmt
 	rm -rf ${PKGDIR}
 	mkdir -p ${PKGDIR}
-	go test -v embed.go buildpkg.go buildpkg_test.go -args -pkgdir=${PKGDIR}
-	go test -v import_test.go
+	go test -v buildpkg.go buildpkg_test.go -args -pkgdir=${PKGDIR}
+	@#go test -v embed.go buildpkg.go buildpkg_test.go -args -pkgdir=${PKGDIR}
+	@#go test -v import_test.go
 
 fmt:
 	@echo "\033[92mGo fmt source code...\033[0m"
