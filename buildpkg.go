@@ -14,7 +14,8 @@ import (
 const gofile = `package {{.PkgName}}
 
 import (
-	"encoding/hex"
+	"encoding/base64"
+	"os"
 )
 
 var virtualFilesystem = map[string]string{
@@ -22,7 +23,11 @@ var virtualFilesystem = map[string]string{
 {{ end }}}
 
 func ReadFile(filename string) ([]byte, error) {
-	return hex.DecodeString(myFile)
+	content, ok := virtualFilesystem[filename]
+	if ok {
+		return base64.StdEncoding.DecodeString(content)
+	}
+	return nil, os.ErrNotExist
 }
 `
 
