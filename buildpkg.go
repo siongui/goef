@@ -5,6 +5,7 @@ package goef
 
 import (
 	"encoding/base64"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -15,6 +16,10 @@ const gofile = `package {{.PkgName}}
 import (
 	"encoding/hex"
 )
+
+var virtualFilesystem = map[string]string{
+{{ range .Files }}"{{ .Name }}": "{{ .Base64Content }}",
+{{ end }}}
 
 func ReadFile(filename string) ([]byte, error) {
 	return hex.DecodeString(myFile)
@@ -31,6 +36,16 @@ type pkgFile struct {
 	Base64Content string
 }
 
+func getFilenameContent(dirpath, path string, info os.FileInfo) (name, content string, err error) {
+	b, err := ioutil.ReadFile(path)
+	if err != nil {
+		return
+	}
+	content = base64.StdEncoding.EncodeToString(b)
+	name, err = filepath.Rel(dirpath, path)
+	return
+}
+
 func GenerateGoPackage(pkgname, dirpath, outputpath string) (err error) {
 	fo, err := os.Create(outputpath)
 	if err != nil {
@@ -39,17 +54,21 @@ func GenerateGoPackage(pkgname, dirpath, outputpath string) (err error) {
 	defer fo.Close()
 
 	pd := pkgData{PkgName: pkgname}
-	err = filepath.Walk(dirpath, func(path string, info os.FileInfo, e error) error {
+	err = filepath.Walk(dirpath, func(filepath string, info os.FileInfo, e error) error {
 		if e != nil {
 			return e
 		}
 
 		if info.Mode().IsRegular() {
-			println(path)
+			name, content, errf := getFilenameContent(dirpath, filepath, info)
+			if errf != nil {
+				return errf
+			}
+
 			pd.Files = append(pd.Files,
 				pkgFile{
-					Name:          path,
-					Base64Content: base64.StdEncoding.EncodeToString([]byte(path)),
+					Name:          name,
+					Base64Content: content,
 				})
 		}
 
