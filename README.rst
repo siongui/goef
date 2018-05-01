@@ -24,8 +24,8 @@ Embed Files in Go_ Package
 
 Embed Files in Go_ Package.
 
-- with limit of max file size.
-- expose interface like fileb0x
+- with limit of max file size. (not yet)
+- files are read-only
 - used in front-end code.
 
 
