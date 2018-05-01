@@ -29,6 +29,22 @@ Embed Files in Go_ Package.
 - used in front-end code.
 
 
+Usage
++++++
+
+Assume we have following directory structure:
+
+.. code-block:: txt
+
+  testdir/
+  ├── hello.txt
+  └── subdir/
+      └── hello2.txt
+
+We want to embed the files in *testdir/* to our code, i.e., embed *hello.txt*
+and *subdir/hello2.txt* in our code.
+
+
 UNLICENSE
 +++++++++
 
