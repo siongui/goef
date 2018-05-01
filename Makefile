@@ -6,12 +6,12 @@ export GOPATH=$(realpath .)
 export PATH := $(GOROOT)/bin:$(GOPATH)/bin:$(PATH)
 
 export PKGNAME=mypkg
-export PKGDIR=${GOPATH}/src/github.com/siongui/$(PKGNAME)
+export PKGDIR=${GOPATH}/src/github.com/siongui/${PKGNAME}
 
 test: fmt
 	rm -rf ${PKGDIR}
 	mkdir -p ${PKGDIR}
-	go test -v buildpkg.go buildpkg_test.go -args -pkgdir=${PKGDIR} -pkgname=$(PKGNAME)
+	go test -v buildpkg.go buildpkg_test.go -args -pkgdir=${PKGDIR} -pkgname=${PKGNAME}
 	go test -v import_test.go
 
 fmt:
