@@ -51,6 +51,19 @@ func getFilenameContent(dirpath, path string, info os.FileInfo) (name, content s
 	return
 }
 
+// This method will generate a single Go file which contains the files in
+// *dirpath* directory, and the name of the package is *pkgname*.
+//
+// You can put the generated Go file in your source code, and read the embedded
+// files with the following method:
+//
+//   ReadFile(filename string) ([]byte, error)
+//
+// The usage of the above method is the same as ioutil.ReadFile in Go standard
+// library.
+//
+// You can also put the generated Go file in a separate package, import and read
+// embedded files in the same way.
 func GenerateGoPackage(pkgname, dirpath, outputpath string) (err error) {
 	fo, err := os.Create(outputpath)
 	if err != nil {

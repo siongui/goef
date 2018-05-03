@@ -24,9 +24,17 @@ Embed Files in Go_ Package
 
 Embed Files in Go_ Package.
 
-- with limit of max file size. (not yet)
-- files are read-only
-- used in front-end code.
+- Files are read-only
+- Used in front-end code via GopherJS_.
+- With limit of max single file size. (not yet)
+
+
+Install
++++++++
+
+.. code-block:: bash
+
+  $ go get -u github.com/siongui/goef
 
 
 Usage
@@ -42,7 +50,60 @@ Assume we have following directory structure:
       └── hello2.txt
 
 We want to embed the files in *testdir/* to our code, i.e., embed *hello.txt*
-and *subdir/hello2.txt* in our code.
+and *subdir/hello2.txt* in our code, and the name of our package is *mypkg*. You
+can embed the files as follows:
+
+.. code-block:: go
+
+  package main
+
+  import (
+  	"github.com/siongui/goef"
+  )
+
+  func main() {
+  	err := goef.GenerateGoPackage("mypkg", "testdir/", "data.go")
+  	if err != nil {
+  		panic(err)
+  	}
+  }
+
+The above code will generate *data.go* in current directory, which contains the
+files embedded in it. You can read embedded files with the following method:
+
+.. code-block:: go
+
+  func ReadFile(filename string) ([]byte, error)
+
+which has the same usage as `ioutil.ReadFile`_ in Go standard library. You can
+read *hello.txt* as follows:
+
+.. code-block:: go
+
+  b, err := ReadFile("hello.txt")
+  if err != nil {
+  	// handle error here
+  }
+
+And read *subdir/hello2.txt* as follows:
+
+.. code-block:: go
+
+  b, err := ReadFile("subdir/hello2.txt")
+  if err != nil {
+  	// handle error here
+  }
+
+Note that for files in sub-directory, you have also include the path of sub-dir
+in the filename.
+
+If the file does not exit, *os.ErrNotExist* error will be returned.
+
+You can also put the generated *data.go* in a separate package, import and read
+embedded files in the same way.
+
+For more details, see test files `buildpkg_test.go <buildpkg_test.go>`_ and
+`import_test.go <import_test.go>`_.
 
 
 UNLICENSE
@@ -77,4 +138,6 @@ References
 .. [3] `Embed Data in Front-end Go Code <https://siongui.github.io/2017/04/08/go-embed-data-in-frontend-code/>`_
 
 .. _Go: https://golang.org/
+.. _GopherJS: https://github.com/gopherjs/gopherjs
+.. _ioutil.ReadFile: https://golang.org/pkg/io/ioutil/#ReadFile
 .. _UNLICENSE: http://unlicense.org/
