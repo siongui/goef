@@ -24,9 +24,26 @@ Embed Files in Go_ Package
 
 Embed Files in Go_ Package.
 
-- Files are read-only
-- Used in front-end code via GopherJS_.
+.. contents:: Table of Contents
+
+
+Features
+++++++++
+
+- Embedded files are read-only.
+- Can be used in front-end code via GopherJS_, or local Go program.
+- Can be included in your Go package, or put in a separate package.
 - With limit of max single file size. (not yet)
+
+
+How It Works
+++++++++++++
+
+The files to be embedded in Go code will be encoded in base64_ format. The
+(name, content) of the files will be put in the (key, value) pairs of Go
+built-in map_ structure, and *ReadFile* method, which has the same usage as
+`ioutil.ReadFile`_, is implemented for read-only access. Because base64 encoding
+is used, the size of the files will increase 33%.
 
 
 Install
@@ -139,5 +156,7 @@ References
 
 .. _Go: https://golang.org/
 .. _GopherJS: https://github.com/gopherjs/gopherjs
+.. _base64: https://en.wikipedia.org/wiki/Base64
+.. _map: https://blog.golang.org/go-maps-in-action
 .. _ioutil.ReadFile: https://golang.org/pkg/io/ioutil/#ReadFile
 .. _UNLICENSE: http://unlicense.org/
