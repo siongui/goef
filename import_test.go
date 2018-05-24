@@ -18,6 +18,16 @@ func TestImport(t *testing.T) {
 		return
 	}
 
+	b, err = mypkg.ReadFile("backtick.txt")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	if string(b) != "I have backtick ` in the file\n" {
+		t.Error("backtick.txt content not correct")
+		return
+	}
+
 	b, err = mypkg.ReadFile("subdir/hello2.txt")
 	if err != nil {
 		t.Error(err)
