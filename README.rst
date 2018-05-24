@@ -86,7 +86,8 @@ can embed the files as follows:
   }
 
 The above code will generate *data.go* in current directory, which contains the
-files embedded in it. You can read embedded files with the following method:
+files directly in the code. You can read embedded files with the following
+method:
 
 .. code-block:: go
 
