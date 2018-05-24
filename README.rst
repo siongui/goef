@@ -120,6 +120,11 @@ If the file does not exit, *os.ErrNotExist* error will be returned.
 You can also put the generated *data.go* in a separate package, import and read
 embedded files in the same way.
 
+If your files are plain texts, you can use GenerateGoPackagePlainText_ instead
+of *GenerateGoPackage*. It is the same except that the file content is stored
+in plain text instead of base64 format, and the size will not increase 33%
+because of base64 encoding.
+
 For more details, see test files `buildpkg_test.go <buildpkg_test.go>`_ and
 `import_test.go <import_test.go>`_.
 
@@ -161,3 +166,4 @@ References
 .. _map: https://blog.golang.org/go-maps-in-action
 .. _ioutil.ReadFile: https://golang.org/pkg/io/ioutil/#ReadFile
 .. _UNLICENSE: http://unlicense.org/
+.. _GenerateGoPackagePlainText: https://godoc.org/github.com/siongui/goef#GenerateGoPackagePlainText
