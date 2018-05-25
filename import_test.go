@@ -68,7 +68,7 @@ func TestImport(t *testing.T) {
 		return
 	}
 
-	b, err = mypkg.ReadFile("hello3.txt")
+	_, err = mypkg.ReadFile("hello3.txt")
 	if err != os.ErrNotExist {
 		t.Error("hello3.txt should not exit!")
 		return

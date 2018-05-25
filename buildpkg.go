@@ -51,7 +51,7 @@ func getFilenameContent(dirpath, path string, info os.FileInfo) (name, content s
 	return
 }
 
-// This method will generate a single Go file which contains the files in
+// GenerateGoPackage will generate a single Go file which contains the files in
 // *dirpath* directory, and the name of the package is *pkgname*.
 //
 // You can put the generated Go file in your source code, and read the embedded
