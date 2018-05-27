@@ -81,7 +81,7 @@ func createDataFile(pd pkgData3, outputdir string) (err error) {
 // file.
 func GenerateGoPackagePlainTextWithMaxFileSize(pkgname, dirpath, outputdir string, maxSize int64) (err error) {
 	if maxSize < minSize {
-		return errors.New(fmt.Sprintf("maxSize cannot be less than %d", minSize))
+		return fmt.Errorf("maxSize cannot be less than %d", minSize)
 	}
 
 	// check if outputdir exists
@@ -120,7 +120,7 @@ func GenerateGoPackagePlainTextWithMaxFileSize(pkgname, dirpath, outputdir strin
 			increasedSize := int64(len([]byte(name+content))) + 10
 
 			if increasedSize > (maxSize - minSize) {
-				return errors.New(fmt.Sprintf("file %s is too big (Please increase maxSize %d)", name, maxSize))
+				return fmt.Errorf("file %s is too big (Please increase maxSize %d)", name, maxSize)
 			}
 
 			currentDataFileSize += increasedSize
