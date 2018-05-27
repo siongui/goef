@@ -33,7 +33,7 @@ Features
 - Embedded files are read-only.
 - Can be used in front-end code via GopherJS_, or local Go program.
 - Can be included in your Go package, or put in a separate package.
-- With limit of max single file size. (not yet)
+- With limit of max single file size. (only for plain-text files)
 
 
 How It Works
@@ -125,6 +125,11 @@ of *GenerateGoPackage*. It is the same except that the file content is stored
 in plain text instead of base64 format, and the size will not increase 33%
 because of base64 encoding.
 
+GenerateGoPackagePlainTextWithMaxFileSize_ is the same as
+GenerateGoPackagePlainText_ except the output file size cannot be over the given
+max limit. This is useful for deploy your code on cloud services such as Google
+App Engine because they usually limit the max size of a single file.
+
 For more details, see test files `buildpkg_test.go <buildpkg_test.go>`_ and
 `import_test.go <import_test.go>`_.
 
@@ -167,3 +172,4 @@ References
 .. _ioutil.ReadFile: https://golang.org/pkg/io/ioutil/#ReadFile
 .. _UNLICENSE: http://unlicense.org/
 .. _GenerateGoPackagePlainText: https://godoc.org/github.com/siongui/goef#GenerateGoPackagePlainText
+.. _GenerateGoPackagePlainTextWithMaxFileSize: https://godoc.org/github.com/siongui/goef#GenerateGoPackagePlainTextWithMaxFileSize

@@ -21,6 +21,10 @@ test: fmt
 	mkdir -p ${PKGDIR}
 	go test -v ${ALL_GO_SOURCES} buildpkg2_test.go -args -pkgdir=${PKGDIR} -pkgname=${PKGNAME}
 	go test -v import_test.go
+	rm -rf ${PKGDIR}
+	mkdir -p ${PKGDIR}
+	go test -v ${ALL_GO_SOURCES} plaintextmaxsize_test.go -args -pkgdir=${PKGDIR} -pkgname=${PKGNAME}
+	go test -v import_test.go
 
 fmt:
 	@echo "\033[92mGo fmt source code...\033[0m"

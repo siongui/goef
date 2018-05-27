@@ -37,7 +37,7 @@ type pkgFile2 struct {
 	PlainTextContent string
 }
 
-func getPlainTextContent(dirpath, path string, info os.FileInfo) (name, content string, err error) {
+func getFilenameAndPlainTextContent(dirpath, path string, info os.FileInfo) (name, content string, err error) {
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
 		return
@@ -67,7 +67,7 @@ func GenerateGoPackagePlainText(pkgname, dirpath, outputpath string) (err error)
 		}
 
 		if info.Mode().IsRegular() {
-			name, content, errf := getPlainTextContent(dirpath, filepath, info)
+			name, content, errf := getFilenameAndPlainTextContent(dirpath, filepath, info)
 			if errf != nil {
 				return errf
 			}
