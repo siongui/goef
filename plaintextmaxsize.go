@@ -27,12 +27,32 @@ func ReadFile(filename string) ([]byte, error) {
 	%s
 	return nil, os.ErrNotExist
 }
+
+func MapKeys() []string {
+	length := 0
+	%s
+	keys := make([]string, length)
+	i := 0
+	%s
+	return keys
+}
 `
 
 const readcode = `
 	content%d, ok%d := vfs%d[filename]
 	if ok%d {
 		return []byte(content%d), nil
+	}
+`
+
+const lengthcode = `
+	length += len(vfs%d)
+`
+
+const appendcode = `
+	for k := range vfs%d {
+		keys[i] = k
+		i++
 	}
 `
 
@@ -46,10 +66,14 @@ type pkgData3 struct {
 
 func createReadFile(pkgname, outputdir string, totalNumberOfDataFiles int64) (err error) {
 	rd := ""
+	ln := ""
+	ap := ""
 	for i := int64(0); i < totalNumberOfDataFiles; i++ {
 		rd += fmt.Sprintf(readcode, i, i, i, i, i)
+		ln += fmt.Sprintf(lengthcode, i)
+		ap += fmt.Sprintf(appendcode, i)
 	}
-	fc := fmt.Sprintf(readfile, pkgname, rd)
+	fc := fmt.Sprintf(readfile, pkgname, rd, ln, ap)
 
 	outputpath := path.Join(outputdir, "read.go")
 	err = ioutil.WriteFile(outputpath, []byte(fc), 0644)

@@ -25,6 +25,16 @@ func ReadFile(filename string) ([]byte, error) {
 	}
 	return nil, os.ErrNotExist
 }
+
+func MapKeys() []string {
+	keys := make([]string, len(virtualFilesystem))
+	i := 0
+	for k := range virtualFilesystem {
+		keys[i] = k
+		i++
+	}
+	return keys
+}
 `
 
 type pkgData2 struct {
