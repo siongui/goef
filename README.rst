@@ -165,6 +165,10 @@ References
 
 .. [3] `Embed Data in Front-end Go Code <https://siongui.github.io/2017/04/08/go-embed-data-in-frontend-code/>`_
 
+.. [4] | `[Q&A] //go:embed draft design : golang <https://old.reddit.com/r/golang/comments/hv96ny/qa_goembed_draft_design/>`_
+       | `[Q&A] io/fs draft design : golang <https://old.reddit.com/r/golang/comments/hv976o/qa_iofs_draft_design/>`_
+
+
 .. _Go: https://golang.org/
 .. _GopherJS: https://github.com/gopherjs/gopherjs
 .. _base64: https://en.wikipedia.org/wiki/Base64
