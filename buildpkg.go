@@ -11,11 +11,13 @@ import (
 	"text/template"
 )
 
+const symlinkheader = `#`
 const gofile = `package {{.PkgName}}
 
 import (
 	"encoding/base64"
 	"os"
+	"path/filepath"
 )
 
 var virtualFilesystem = map[string]string{
@@ -25,6 +27,11 @@ var virtualFilesystem = map[string]string{
 func ReadFile(filename string) ([]byte, error) {
 	content, ok := virtualFilesystem[filename]
 	if ok {
+		if len(content) > 0 && content[0] == '#' {
+			// this is a symlink
+			p := filepath.Clean(filepath.Join(filepath.Dir(filename), content[1:]))
+			return ReadFile(p)
+		}
 		return base64.StdEncoding.DecodeString(content)
 	}
 	return nil, os.ErrNotExist
@@ -82,13 +89,13 @@ func GenerateGoPackage(pkgname, dirpath, outputpath string) (err error) {
 	defer fo.Close()
 
 	pd := pkgData{PkgName: pkgname}
-	err = filepath.Walk(dirpath, func(filepath string, info os.FileInfo, e error) error {
+	err = filepath.Walk(dirpath, func(filePath string, info os.FileInfo, e error) error {
 		if e != nil {
 			return e
 		}
 
 		if info.Mode().IsRegular() {
-			name, content, errf := getFilenameContent(dirpath, filepath, info)
+			name, content, errf := getFilenameContent(dirpath, filePath, info)
 			if errf != nil {
 				return errf
 			}
@@ -97,6 +104,26 @@ func GenerateGoPackage(pkgname, dirpath, outputpath string) (err error) {
 				pkgFile{
 					Name:          name,
 					Base64Content: content,
+				})
+		}
+
+		if info.Mode()&os.ModeSymlink != 0 {
+			// symbolic link
+			//println(info.Name())
+			l, errs := os.Readlink(filePath)
+			if errs != nil {
+				return errs
+			}
+			//println(l)
+
+			name, errs := filepath.Rel(dirpath, filePath)
+			if errs != nil {
+				return errs
+			}
+			pd.Files = append(pd.Files,
+				pkgFile{
+					Name:          name,
+					Base64Content: symlinkheader + l,
 				})
 		}
 

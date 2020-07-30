@@ -5,10 +5,10 @@ Embed Files in Go_ Package
 .. image:: https://img.shields.io/badge/Language-Go-blue.svg
    :target: https://golang.org/
 
-.. image:: https://godoc.org/github.com/siongui/goef?status.png
+.. image:: https://godoc.org/github.com/siongui/goef?status.svg
    :target: https://godoc.org/github.com/siongui/goef
 
-.. image:: https://api.travis-ci.org/siongui/goef.png?branch=master
+.. image:: https://api.travis-ci.org/siongui/goef.svg?branch=master
    :target: https://travis-ci.org/siongui/goef
 
 .. image:: https://goreportcard.com/badge/github.com/siongui/goef
@@ -34,6 +34,7 @@ Features
 - Can be used in front-end code via GopherJS_, or local Go program.
 - Can be included in your Go package, or put in a separate package.
 - With limit of max single file size. (only for plain-text files)
+- Support symbolic links (only GenerateGoPackage_ method)
 
 
 How It Works
@@ -175,5 +176,6 @@ References
 .. _map: https://blog.golang.org/go-maps-in-action
 .. _ioutil.ReadFile: https://golang.org/pkg/io/ioutil/#ReadFile
 .. _UNLICENSE: http://unlicense.org/
+.. _GenerateGoPackage: https://godoc.org/github.com/siongui/goef#GenerateGoPackage
 .. _GenerateGoPackagePlainText: https://godoc.org/github.com/siongui/goef#GenerateGoPackagePlainText
 .. _GenerateGoPackagePlainTextWithMaxFileSize: https://godoc.org/github.com/siongui/goef#GenerateGoPackagePlainTextWithMaxFileSize

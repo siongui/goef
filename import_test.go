@@ -3,92 +3,59 @@ package goef
 import (
 	"bytes"
 	"io/ioutil"
-	"os"
 	"testing"
 
 	"github.com/siongui/mypkg"
 )
 
-func isInArray(array []string, item string) bool {
-	for _, i := range array {
-		if i == item {
-			return true
-		}
-	}
-	return false
-}
-
 func TestImport(t *testing.T) {
-	a1, err := ioutil.ReadFile("testdir/hello.txt")
-	if err != nil {
-		t.Error(err)
-		return
-	}
-	a2, err := ioutil.ReadFile("testdir/backtick.txt")
-	if err != nil {
-		t.Error(err)
-		return
-	}
-	a3, err := ioutil.ReadFile("testdir/subdir/hello2.txt")
+	CommonImportTest(t)
+
+	sl, err := ioutil.ReadFile("testdir/subdir/testlink")
 	if err != nil {
 		t.Error(err)
 		return
 	}
 
-	b, err := mypkg.ReadFile("hello.txt")
+	sl2, err := ioutil.ReadFile("testdir/testlink2")
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	if !bytes.Equal(a1, b) {
-		t.Error("hello.txt content not correct")
-		return
-	}
 
-	b, err = mypkg.ReadFile("backtick.txt")
+	b, err := mypkg.ReadFile("subdir/testlink")
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	if !bytes.Equal(a2, b) {
-		t.Error("backtick.txt content not correct")
+	if !bytes.Equal(sl, b) {
+		t.Error("subdir/testlink content not correct")
 		return
 	}
 
-	b, err = mypkg.ReadFile("subdir/hello2.txt")
+	b, err = mypkg.ReadFile("testlink2")
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	if !bytes.Equal(a3, b) {
-		t.Error("subdir/hello2.txt content not correct")
-		return
-	}
-
-	_, err = mypkg.ReadFile("hello3.txt")
-	if err != os.ErrNotExist {
-		t.Error("hello3.txt should not exit!")
+	if !bytes.Equal(sl2, b) {
+		t.Error("testlink2 content not correct")
 		return
 	}
 
 	filenames := mypkg.MapKeys()
-	if len(filenames) != 3 {
+	if len(filenames) != 5 {
 		t.Error("number of files not correct")
 		return
 	}
 
-	if !isInArray(filenames, "hello.txt") {
-		t.Error("hello.txt not in MapKeys")
+	if !isInArray(filenames, "subdir/testlink") {
+		t.Error("subdir/testlink not in MapKeys")
 		return
 	}
 
-	if !isInArray(filenames, "backtick.txt") {
-		t.Error("backtick.txt not in MapKeys")
-		return
-	}
-
-	if !isInArray(filenames, "subdir/hello2.txt") {
-		t.Error("subdir/hello2.txt not in MapKeys")
+	if !isInArray(filenames, "testlink2") {
+		t.Error("testlink2 not in MapKeys")
 		return
 	}
 }

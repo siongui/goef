@@ -16,15 +16,15 @@ test: fmt
 	if [ -d ${PKGDIR} ]; then rm -rf ${PKGDIR}; fi
 	mkdir -p ${PKGDIR}
 	go test -v ${ALL_GO_SOURCES} buildpkg_test.go -args -pkgdir=${PKGDIR} -pkgname=${PKGNAME}
-	go test -v import_test.go
+	go test -v import_common_test.go import_test.go
 	rm -rf ${PKGDIR}
 	mkdir -p ${PKGDIR}
 	go test -v ${ALL_GO_SOURCES} buildpkg2_test.go -args -pkgdir=${PKGDIR} -pkgname=${PKGNAME}
-	go test -v import_test.go
+	go test -v import_common_test.go import2_test.go
 	rm -rf ${PKGDIR}
 	mkdir -p ${PKGDIR}
 	go test -v ${ALL_GO_SOURCES} plaintextmaxsize_test.go -args -pkgdir=${PKGDIR} -pkgname=${PKGNAME}
-	go test -v import_test.go
+	go test -v import_common_test.go import2_test.go
 
 fmt:
 	@echo "\033[92mGo fmt source code...\033[0m"
