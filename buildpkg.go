@@ -81,6 +81,9 @@ func getFilenameContent(dirpath, path string, info os.FileInfo) (name, content s
 //
 // You can also put the generated Go file in a separate package, import and read
 // embedded files in the same way.
+//
+// This method also supports embedding symbolic links. When the symlink are
+// read, the content of the file where the symlink points to will be returned.
 func GenerateGoPackage(pkgname, dirpath, outputpath string) (err error) {
 	fo, err := os.Create(outputpath)
 	if err != nil {

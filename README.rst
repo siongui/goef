@@ -34,7 +34,7 @@ Features
 - Can be used in front-end code via GopherJS_, or local Go program.
 - Can be included in your Go package, or put in a separate package.
 - With limit of max single file size. (only for plain-text files)
-- Support symbolic links (only GenerateGoPackage_ method)
+- Support embedding symbolic links (only GenerateGoPackage_ method)
 
 
 How It Works
@@ -113,8 +113,11 @@ And read *subdir/hello2.txt* as follows:
   	// handle error here
   }
 
-Note that for files in sub-directory, you have also include the path of sub-dir
-in the filename.
+Note that for files in sub-directory, you also have to include the path of
+sub-dir in the filename.
+
+GenerateGoPackage_ method supports embedding symbolic links. When the symlink
+are read, the content of the file where the symlink points to will be returned.
 
 If the file does not exit, *os.ErrNotExist* error will be returned.
 
@@ -123,8 +126,8 @@ embedded files in the same way.
 
 If your files are plain texts, you can use GenerateGoPackagePlainText_ instead
 of *GenerateGoPackage*. It is the same except that the file content is stored
-in plain text instead of base64 format, and the size will not increase 33%
-because of base64 encoding.
+in plain text instead of base64 format and no symlinks embedding, and the size
+will not increase 33% because of base64 encoding.
 
 GenerateGoPackagePlainTextWithMaxFileSize_ is the same as
 GenerateGoPackagePlainText_ except the output file size cannot be over the given
