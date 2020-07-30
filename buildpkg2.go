@@ -61,8 +61,9 @@ func getFilenameAndPlainTextContent(dirpath, path string, info os.FileInfo) (nam
 
 // GenerateGoPackagePlainText is the same as GenerateGoPackage method, except
 // file content are embedded directly in the code without encoding the content
-// in base64 format. If your file content consists of plain texts, it is
-// probably better to use this method instead of GenerateGoPackage method.
+// in base64 format, and no symbolic links embedding. If your file content
+// consists of plain texts and the files are not symbolic links, it is probably
+// better to use this method instead of GenerateGoPackage method.
 func GenerateGoPackagePlainText(pkgname, dirpath, outputpath string) (err error) {
 	fo, err := os.Create(outputpath)
 	if err != nil {
