@@ -85,11 +85,13 @@ func getFilenameContent(dirpath, path string, info os.FileInfo) (name, content s
 // This method also supports embedding symbolic links. When the symlink are
 // read, the content of the file where the symlink points to will be returned.
 func GenerateGoPackage(pkgname, dirpath, outputpath string) (err error) {
-	return GeneratePackage(pkgname, dirpath, outputpath, getFilenameContent)
+	return GeneratePackage(pkgname, dirpath, outputpath, getFilenameContent, gofile)
 }
 
 // GeneratePackage is used by GenerateGoPackage. TODO: add doc here.
-func GeneratePackage(pkgname, dirpath, outputpath string, KeyValueFuc func(string, string, os.FileInfo) (string, string, error)) (err error) {
+func GeneratePackage(pkgname, dirpath, outputpath string,
+	KeyValueFuc func(string, string, os.FileInfo) (string, string, error),
+	goFile string) (err error) {
 	fo, err := os.Create(outputpath)
 	if err != nil {
 		return
@@ -141,7 +143,7 @@ func GeneratePackage(pkgname, dirpath, outputpath string, KeyValueFuc func(strin
 		return
 	}
 
-	tmpl, err := template.New("goembed").Parse(gofile)
+	tmpl, err := template.New("goembed").Parse(goFile)
 	if err != nil {
 		return
 	}
