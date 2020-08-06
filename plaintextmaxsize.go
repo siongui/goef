@@ -12,12 +12,16 @@ import (
 
 const datafile = `package {{.PkgName}}
 
+// DO NOT EDIT. This file is auto-created by github.com/siongui/goef
+
 var vfs{{.N}} = map[string]string{
 {{ range .Files }}"{{ .Name }}": ` + "`" + `{{ .PlainTextContent }}` + "`" + `,
 {{ end }}}
 `
 
 const readfile = `package %s
+
+// DO NOT EDIT. This file is auto-created by github.com/siongui/goef
 
 import (
 	"os"

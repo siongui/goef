@@ -14,6 +14,8 @@ import (
 const symlinkheader = `#`
 const gofile = `package {{.PkgName}}
 
+// DO NOT EDIT. This file is auto-created by github.com/siongui/goef
+
 import (
 	"encoding/base64"
 	"os"

@@ -10,6 +10,8 @@ import (
 
 const gofile2 = `package {{.PkgName}}
 
+// DO NOT EDIT. This file is auto-created by github.com/siongui/goef
+
 import (
 	"os"
 )
