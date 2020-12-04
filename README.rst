@@ -8,8 +8,11 @@ Embed Files in Go_ Package
 .. image:: https://godoc.org/github.com/siongui/goef?status.svg
    :target: https://godoc.org/github.com/siongui/goef
 
-.. image:: https://api.travis-ci.org/siongui/goef.svg?branch=master
+.. .. image:: https://api.travis-ci.org/siongui/goef.svg?branch=master
    :target: https://travis-ci.org/siongui/goef
+
+.. image:: https://github.com/siongui/goef/workflows/Test%20Package/badge.svg
+    :target: https://github.com/siongui/goef/blob/master/.github/workflows/build.yml
 
 .. image:: https://goreportcard.com/badge/github.com/siongui/goef
    :target: https://goreportcard.com/report/github.com/siongui/goef
