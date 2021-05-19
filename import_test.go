@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/siongui/mypkg"
+	"siongui/mypkg"
 )
 
 func TestImport(t *testing.T) {

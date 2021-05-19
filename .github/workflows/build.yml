@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: [ '1.15', '1.12' ]
+        go: [ '1.16', '1.12' ]
     name: Test goef Package
     steps:
       - uses: actions/checkout@v2.3.1

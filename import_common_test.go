@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/siongui/mypkg"
+	"siongui/mypkg"
 )
 
 func isInArray(array []string, item string) bool {
