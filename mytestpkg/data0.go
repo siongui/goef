@@ -1,4 +1,4 @@
-package mypkg
+package mytestpkg
 
 // DO NOT EDIT. This file is auto-created by github.com/siongui/goef
 

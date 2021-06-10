@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"siongui/mypkg"
+	"github.com/siongui/goef/mytestpkg"
 )
 
 func TestImport(t *testing.T) {
@@ -23,7 +23,7 @@ func TestImport(t *testing.T) {
 		return
 	}
 
-	b, err := mypkg.ReadFile("subdir/testlink")
+	b, err := mytestpkg.ReadFile("subdir/testlink")
 	if err != nil {
 		t.Error(err)
 		return
@@ -33,7 +33,7 @@ func TestImport(t *testing.T) {
 		return
 	}
 
-	b, err = mypkg.ReadFile("testlink2")
+	b, err = mytestpkg.ReadFile("testlink2")
 	if err != nil {
 		t.Error(err)
 		return
@@ -43,7 +43,7 @@ func TestImport(t *testing.T) {
 		return
 	}
 
-	filenames := mypkg.MapKeys()
+	filenames := mytestpkg.MapKeys()
 	if len(filenames) != 5 {
 		t.Error("number of files not correct")
 		return

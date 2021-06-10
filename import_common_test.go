@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"siongui/mypkg"
+	"github.com/siongui/goef/mytestpkg"
 )
 
 func isInArray(array []string, item string) bool {
@@ -35,7 +35,7 @@ func CommonImportTest(t *testing.T) {
 		return
 	}
 
-	b, err := mypkg.ReadFile("hello.txt")
+	b, err := mytestpkg.ReadFile("hello.txt")
 	if err != nil {
 		t.Error(err)
 		return
@@ -45,7 +45,7 @@ func CommonImportTest(t *testing.T) {
 		return
 	}
 
-	b, err = mypkg.ReadFile("backtick.txt")
+	b, err = mytestpkg.ReadFile("backtick.txt")
 	if err != nil {
 		t.Error(err)
 		return
@@ -55,7 +55,7 @@ func CommonImportTest(t *testing.T) {
 		return
 	}
 
-	b, err = mypkg.ReadFile("subdir/hello2.txt")
+	b, err = mytestpkg.ReadFile("subdir/hello2.txt")
 	if err != nil {
 		t.Error(err)
 		return
@@ -65,13 +65,13 @@ func CommonImportTest(t *testing.T) {
 		return
 	}
 
-	_, err = mypkg.ReadFile("hello3.txt")
+	_, err = mytestpkg.ReadFile("hello3.txt")
 	if err != os.ErrNotExist {
 		t.Error("hello3.txt should not exit!")
 		return
 	}
 
-	filenames := mypkg.MapKeys()
+	filenames := mytestpkg.MapKeys()
 	if !isInArray(filenames, "hello.txt") {
 		t.Error("hello.txt not in MapKeys")
 		return
